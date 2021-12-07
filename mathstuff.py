@@ -3,7 +3,9 @@ import math
 import requests     
 import time
 
-i = input('Check for updates (may take a while) (y/n)')
+#v 1[test]
+#This stuff needs to be worked on using the github api
+"""i = input('Check for updates (may take a while) (y/n)')
 if i == 'y':
     print('Checking for updates (this could take a bit)')
     try: 
@@ -13,7 +15,7 @@ if i == 'y':
         req = '1\n'
 
     if not(req == '1\n'):
-        print('There is an update available: (version: %s)' %req)
+        print('There is an update available: (version: %s)' %req)"""
 #What are you doing here?
 #testofmathstuff.py
 os.system("title " + "Math stuff By me")
