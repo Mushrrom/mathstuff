@@ -1,22 +1,36 @@
 import os
 import math
+import requests     
+import time
+
+i = input('Check for updates (may take a while) (y/n)')
+if i == 'y':
+    print('Checking for updates (this could take a bit)')
+    try: 
+        req = requests.get("https://raw.githubusercontent.com/Mushrrom/mathstuff/main/version.txt", timeout=10)
+    except requests.exceptions.Timeout as err: 
+        print('could not check for updates (could not connect)')
+        req = '1\n'
+
+    if not(req == '1\n'):
+        print('There is an update available: (version: %s)' %req)
 #What are you doing here?
 #testofmathstuff.py
 os.system("title " + "Math stuff By me")
 num = 0
-#Allnums = "the factors of " + str(num) + " are: "
-#squarenums = "The square factors of " + str(num) + " are: "
 i = 1
-print("Some math stuff so that I can save time because I'm lazy :)")
-print('available at https://github.com/Mushrrom/mathstuff')
+print('\n')
+print("Some math stuff so that I can save time because I'm lazy :) (it's currently a buggy mess)")
+print('Code available at https://github.com/Mushrrom/mathstuff')
+print('Releases available at https://github.com/Mushrrom/mathstuff/releases (check here to manualy check for updates)')
 print('type h for help')
 print("\n")
 
-#all the function stuff so that the actual thing doesnt grt really cluttered up :) 
+#all the function stnuff so that the actual thing doesnt grt really cluttered up :) 
 
 #regular functions-------------
 def calcfactors(calcnum):
-
+    calcnum = int(calcnum)
     i = 1
     Allnums = "the factors of " + str(calcnum) + " are: "
     squarenums = "The square factors of " + str(calcnum) + " are: "
@@ -113,12 +127,14 @@ def dosettings(setting):
 #debug functions----------------
 
 def calcfactors_debug(calcnum):
-
+    print('debug')
     i = 1
+    calcnum = int(calcnum)
     Allnums = "the factors of " + str(calcnum) + " are: "
     squarenums = "The square factors of " + str(calcnum) + " are: "
     percent = -1
     while i < calcnum:
+        print('i: %s' %i)
         if float(calcnum/i).is_integer():
             Allnums += str(i) + ", "
             squareroot = math.sqrt(i)
@@ -128,21 +144,26 @@ def calcfactors_debug(calcnum):
 
         if not int((i / calcnum)*100) == percent:
             percent = int((i / calcnum)*100)
-            print("\r Progress: " + str(percent) + "% completed     ", end="")
+            #print("\r Progress: " + str(percent) + "% completed     ", end="")
     print("\n")
     print(Allnums)
     print(squarenums)
 
+
 Pathforthestuff = '%s/mushrrom/mathstuff' % os.environ['appdata']
 if not os.path.exists(Pathforthestuff):
-    print('If this is your first time using the program type h or help for help')
+    print('If this is your first time using the program type h or help for help\n')
     os.makedirs(Pathforthestuff)
+    with open('%s/mushrrom/mathstuff/test.txt' %os.environ['appdata'], 'w') as file: #CHANGE THIS TO MUSHRROM FOLDER
+        data = ['1\n', '1\n', 'false\n']
+        file.writelines(data)
+
+
 
 
  
 going = True
 while going == True:
-    #num = int(input("Enter Number: "))
     commandinput = input(": ") 
     #Calculates factors
     if commandinput.startswith("h") or commandinput.startswith("help"):
@@ -154,7 +175,14 @@ while going == True:
     elif commandinput.startswith("f ") or commandinput.startswith("factor "):
         commandinput = commandinput.replace("f ", "")
         num = int(commandinput.replace("factor ", ""))
-        calcfactors(num) 
+        with open('%s/mushrrom/mathstuff/test.txt' %os.environ['appdata']) as file: #CHANGE THIS TO MUSHRROM FOLDER
+            data = file.readlines()
+        ison = data[2]
+        if ison == "true\n":
+            print('e')
+            calcfactors_debug(commandinput)
+        else:
+            calcfactors(commandinput)
     elif commandinput.startswith("lcm"):
         commandinput = commandinput.replace("lcm ", "")
         commandinput = commandinput.replace("lcm ", "")    
