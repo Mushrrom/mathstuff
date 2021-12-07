@@ -3,7 +3,7 @@ import math
 import requests     
 import time
 
-#v 1[test]
+#v 0.1[test]
 #This stuff needs to be worked on using the github api
 """i = input('Check for updates (may take a while) (y/n)')
 if i == 'y':
