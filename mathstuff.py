@@ -48,9 +48,7 @@ def calcfactors(calcnum):
         if not int((i / calcnum)*100) == percent:
             percent = int((i / calcnum)*100)
             print("\r Progress: " + str(percent) + "% completed     ", end="")
-    print("\n")
-    print(Allnums)
-    print(squarenums)
+            
     return(Allnums,squarenums)
 
 def calclcm(nums):
@@ -185,7 +183,11 @@ while going == True:
             print('e')
             calcfactors_debug(commandinput)
         else:
-            calcfactors(commandinput)
+            factors = calcfactors(commandinput)
+            print('\n')
+            print(factors[0])
+            print(factors[1])
+
     elif commandinput.startswith("lcm"):
         commandinput = commandinput.replace("lcm ", "")
         commandinput = commandinput.replace("lcm ", "")    
