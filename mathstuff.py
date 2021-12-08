@@ -51,6 +51,7 @@ def calcfactors(calcnum):
     print("\n")
     print(Allnums)
     print(squarenums)
+    return(Allnums,squarenums)
 
 def calclcm(nums):
     #print(nums)
