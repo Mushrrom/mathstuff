@@ -51,26 +51,31 @@ def calcfactors(calcnum):
             
     return(Allnums,squarenums)
 
-def calclcm(nums):
-    #print(nums)
-    nums = nums.split()
-    #print(nums)
+def calcfactors(calcnum):
+    calcnum = int(calcnum)
+    i = 1
+    Allnums = "the factors of " + str(calcnum) + " are: "
+    squarenums = "The square factors of " + str(calcnum) + " are: "
+    squarefactorslist = []
+    percent = -1
+    while i < calcnum:
+        if float(calcnum/i).is_integer():
+            Allnums += str(i) + ", "
+            squareroot = math.sqrt(i)
+            if float(squareroot).is_integer():
+                squarenums += str(i) + ", "
+                squarefactorslist.append(int(i))
+        i+=1
 
-    num1 = int(nums[0])
-    num2 = int(nums[1])
-    num1current = num1
-    num2current = num2
-    num1multipliedby = 1
-    num2multipliedby = 1
-    while num1current != num2current:
-        if num1current < num2current:
-            num1multipliedby += 1
-            num1current = num1 * num1multipliedby
-        elif num2current < num1current:
-            num2multipliedby += 1
-            num2current = num2 * num2multipliedby
-    calculation = "%i x %i, %i x %i" %(num1, num1multipliedby, num2, num2multipliedby)
-    print("The lowest common multiple of %i and %i is %i (%s)" %(num1, num2, num1current, calculation ))
+        if not int((i / calcnum)*100) == percent:
+            percent = int((i / calcnum)*100)
+            print("\r Progress: " + str(percent) + "% completed     ", end="")
+    if len(squarefactorslist) == 0:
+        highestsquarefactor = 0
+    else:
+        a = len(squarefactorslist) - 1
+        highestsquarefactor = squarefactorslist[a]
+    return(Allnums,squarenums, highestsquarefactor)
 
 def help(helpstuff):
     if len(helpstuff) == 0:
@@ -122,7 +127,17 @@ def dosettings(setting):
         else:
             print("Debug can only be set to true or false")
 
-
+def surd(num):
+    stuff = calcfactors(num)
+    highfactor = stuff[2]
+    print('\n')
+    if highfactor == 0 or highfactor == 1:
+        output = "The surd of %s cannot be simplified" %num
+    else:
+        morestuff = (int(num)/int(highfactor))
+        
+        output = 'this can be simplified to %s √%s' %(int(math.sqrt(highfactor)), int(morestuff))
+    return(output)
 
 
 #debug functions----------------
@@ -198,6 +213,9 @@ while going == True:
         commandinput = commandinput.replace('settings', '')
         commandinput = commandinput.replace(' ', '')
         dosettings(commandinput)
-
+    elif commandinput.startswith('surd'):
+        commandinput = commandinput.replace('surd', '')
+        commandinput = commandinput.replace(' ', '')
+        print(surd(commandinput))
     else:
         print("Unknown command: %s" %commandinput)
