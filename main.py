@@ -4,7 +4,7 @@ import requests
 import time
 import mathfunctions
 #v 0.1[test]
-#This stuff needs to be worked on using the github api
+#HOW DO YOU MAKE THIS RUN IN THE BACKGROUND AND NOT MAKE THE PROGRAM TAKE A LONG TIME TO START UP
 """i = input('Check for updates (may take a while) (y/n)')
 if i == 'y':
     print('Checking for updates (this could take a bit)')
@@ -51,17 +51,10 @@ while going == True:
         commandinput = commandinput.replace("h", "")
         print(commandinput)
         helpstuff = commandinput.replace(" ", "")
-        help(helpstuff)
+        mathfunctions.help(helpstuff)
     elif commandinput.startswith("f ") or commandinput.startswith("factor "):
         commandinput = commandinput.replace("f ", "")
         num = int(commandinput.replace("factor ", ""))
-        #with open('%s/mushrrom/mathstuff/test.txt' %os.environ['appdata']) as file: #CHANGE THIS TO MUSHRROM FOLDER
-        #    data = file.readlines()
-        #ison = data[2]
-        #if ison == "true\n":
-        #    print('e')
-        #    calcfactors_debug(commandinput)
-        #else:
         factors = mathfunctions.calcfactors(commandinput)
         print('\n')
         print(factors[0])
