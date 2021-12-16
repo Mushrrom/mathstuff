@@ -30,31 +30,6 @@ print("\n")
 
 #all the function stnuff so that the actual thing doesnt grt really cluttered up :) 
 
-
-def calcfactors_debug(calcnum):
-    print('debug')
-    i = 1
-    calcnum = int(calcnum)
-    Allnums = "the factors of " + str(calcnum) + " are: "
-    squarenums = "The square factors of " + str(calcnum) + " are: "
-    percent = -1
-    while i < calcnum:
-        print('i: %s' %i)
-        if float(calcnum/i).is_integer():
-            Allnums += str(i) + ", "
-            squareroot = math.sqrt(i)
-            if float(squareroot).is_integer():
-                squarenums += str(i) + ", "
-        i+=1
-
-        if not int((i / calcnum)*100) == percent:
-            percent = int((i / calcnum)*100)
-            #print("\r Progress: " + str(percent) + "% completed     ", end="")
-    print("\n")
-    print(Allnums)
-    print(squarenums)
-
-
 Pathforthestuff = '%s/mushrrom/mathstuff' % os.environ['appdata']
 if not os.path.exists(Pathforthestuff):
     print('If this is your first time using the program type h or help for help\n')
@@ -80,17 +55,17 @@ while going == True:
     elif commandinput.startswith("f ") or commandinput.startswith("factor "):
         commandinput = commandinput.replace("f ", "")
         num = int(commandinput.replace("factor ", ""))
-        with open('%s/mushrrom/mathstuff/test.txt' %os.environ['appdata']) as file: #CHANGE THIS TO MUSHRROM FOLDER
-            data = file.readlines()
-        ison = data[2]
-        if ison == "true\n":
-            print('e')
-            calcfactors_debug(commandinput)
-        else:
-            factors = mathfunctions.calcfactors(commandinput)
-            print('\n')
-            print(factors[0])
-            print(factors[1])
+        #with open('%s/mushrrom/mathstuff/test.txt' %os.environ['appdata']) as file: #CHANGE THIS TO MUSHRROM FOLDER
+        #    data = file.readlines()
+        #ison = data[2]
+        #if ison == "true\n":
+        #    print('e')
+        #    calcfactors_debug(commandinput)
+        #else:
+        factors = mathfunctions.calcfactors(commandinput)
+        print('\n')
+        print(factors[0])
+        print(factors[1])
 
     elif commandinput.startswith("lcm"):
         commandinput = commandinput.replace("lcm ", "")
