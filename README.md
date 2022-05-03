@@ -1,6 +1,6 @@
 # mathstuff
-Some maths stuff
-ignore how bad it is at the moment
+A project I made to learn python stuff
+Prented this doesn't exits
 
 # building:
-Use cx_freeze then 'py setup.py build'
+Why on earth would you want to?
